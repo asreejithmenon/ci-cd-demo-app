@@ -1,0 +1,12 @@
+steps:
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - |
+    gcloud run deploy ci-cd-demo-service \
+      --image gcr.io/$PROJECT_ID/ci-cd-demo-image \
+      --region us-central1 \
+      --allow-unauthenticated
+images:
+- 'gcr.io/$PROJECT_ID/ci-cd-demo-image'
