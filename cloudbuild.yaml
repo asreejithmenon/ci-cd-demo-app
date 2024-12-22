@@ -1,12 +1,13 @@
-steps:
-- name: 'gcr.io/cloud-builders/gcloud'
+- name: 'gcr.io/cloud-builders/docker'  # Build the image
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/ci-cd-demo-image', '.']  # Build from current directory
+
+- name: 'gcr.io/cloud-builders/gcloud'  # Deploy the image
   entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    gcloud run deploy ci-cd-demo-service \
-      --image gcr.io/$PROJECT_ID/ci-cd-demo-image \
-      --region us-central1 \
-      --allow-unauthenticated
-images:
-- 'gcr.io/$PROJECT_ID/ci-cd-demo-image'
+  args:  # Inline deployment command
+    - '-c'
+    - |
+      gcloud run deploy ci-cd-demo-service \
+        --image gcr.io/$PROJECT_ID/ci-cd-demo-image \
+        --region us-central1 \
+        --allow-unauthenticated
+
