@@ -1,5 +1,13 @@
-FROM nginx:latest  # Use a base Nginx image
+FROM nginx:latest
 
-COPY . /usr/share/nginx/html # Copy your web app files
+# Copy nginx configuration first
+COPY nginx.conf /etc/nginx/templates/default.conf.template
 
-EXPOSE 80 # Expose port 80
+# Copy web files
+COPY . /usr/share/nginx/html
+
+# Set environment variable for nginx template processing
+ENV NGINX_PORT=8080
+
+# Expose the port
+EXPOSE 8080
