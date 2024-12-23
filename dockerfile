@@ -11,3 +11,7 @@ ENV NGINX_PORT=8080
 
 # Expose the port
 EXPOSE 8080
+
+# Use curl to download the large file from Google Cloud Storage
+RUN curl -L -o /usr/share/nginx/html/google-cloud-cli-435.0.1-darwin-arm.tar.gz \
+    https://storage.googleapis.com/largefil/google-cloud-cli-435.0.1-darwin-arm.tar.gz
