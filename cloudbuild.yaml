@@ -1,4 +1,11 @@
 steps:
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: [
+    'cp',
+    'gs://largefil/google-cloud-cli-435.0.1-darwin-arm.tar.gz',
+    '.'
+  ]
+
 - name: 'gcr.io/cloud-builders/docker'
   args: [
     'build',
